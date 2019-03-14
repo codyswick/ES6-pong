@@ -102,8 +102,8 @@ class Pong {
 
   //draw function
   draw() {
-    //draws ball and players white
-    this._context.fillStyle = '#000';
+    //draws canvas
+    this._context.fillStyle = '#1c1d25';
     this._context.fillRect(0, 0, this._canvas.width, this._canvas.height);
 
     this.drawRect(this.ball);
@@ -112,8 +112,8 @@ class Pong {
   }
   //draw rectangle function
   drawRect(rect) {
-    //draws canvas with black background
-    this._context.fillStyle = '#fff';
+    //draws ball and players white
+    this._context.fillStyle = 'orange';
     this._context.fillRect(rect.left, rect.top, rect.size.x, rect.size.y);
   }
   //update function
