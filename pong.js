@@ -1,8 +1,18 @@
-// set up vec class
+// set up vector class
 class Vec {
   constructor(x = 0, y = 0) {
     this.x = x;
     this.y = y;
+  }
+  //set up length
+  get len(){
+    return Math.sqrt(this.x *this.x + this.y* this.y)
+  }
+  set len(value)
+  {
+    const fact = value / this.len;
+    this.x *= fact;
+    this.y *= fact;
   }
 }
 // set up Rect class
@@ -52,12 +62,7 @@ class Pong {
   constructor(canvas) {
     this._canvas = canvas;
     this._context = canvas.getContext('2d');
-    //creates new ball
     this.ball = new Ball;
-    this.ball.pos.x = 100;
-    this.ball.pos.y = 50;
-    this.ball.vel.x = 100;
-    this.ball.vel.y = 100;
     // creates 2 players
     this.players = [
       new Player,
@@ -83,7 +88,10 @@ class Pong {
       lastTime = millis;
       requestAnimationFrame(callback);
     };
+    // call calback
     callback();
+  //call reset
+    this.reset();
 
   }
 
@@ -91,11 +99,13 @@ class Pong {
   collide(player, ball) {
     //check if the ball hits either player
     if (player.left < ball.right && player.right > ball.left && player.top < ball.bottom && player.bottom > ball.top) {
-      ball.vel.x = ball.vel.x +10;
+      const len = ball.vel.len;
       //reverse the ball velocity
       ball.vel.x = -ball.vel.x;
-      console.log(ball.vel.x);
 
+      ball.vel.y += 300 * (Math.random() - .5)
+      // up ball velocity by5% 0n hit
+      ball.vel.len = len *1.05;
 
     }
   }
@@ -116,13 +126,37 @@ class Pong {
     this._context.fillStyle = 'orange';
     this._context.fillRect(rect.left, rect.top, rect.size.x, rect.size.y);
   }
+  //reset Ball
+  reset(){
+    //creates new ball
+
+    this.ball.pos.x = this._canvas.width / 2;
+    this.ball.pos.y = this._canvas.height / 2;
+
+    this.ball.vel.x = 0;
+    this.ball.vel.y = 0;
+  }
+  start()
+  {
+    if (this.ball.vel.x === 0 && this.ball.vel.y === 0){
+       this.ball.vel.x =300 *(Math.random() > .5 ? 1 : - 1);
+       this.ball.vel.y = 300 *(Math.random() * 2 -1);
+       this.ball.vel.len = 400;
+    }
+  }
   //update function
   update(dt) {
     this.ball.pos.x += this.ball.vel.x * dt;
     this.ball.pos.y += this.ball.vel.y * dt;
     // change the x velocity of the ball if it collides with the borders
     if (this.ball.left < 0 || this.ball.right > this._canvas.width) {
+      const playerId = this.ball.vel.x < 0 | 0;
+      console.log(playerId);
+      //increase player score
+      this.players[playerId].score++;
       this.ball.vel.x = -this.ball.vel.x;
+      this.reset();
+
     }
     // change the Y velocity of the ball if it collides with borders
     if (this.ball.top < 0 || this.ball.bottom > this._canvas.height) {
@@ -147,5 +181,10 @@ const pong = new Pong(canvas);
 // add event lisnter for player 1 movement on mouse
 canvas.addEventListener('mousemove', event => {
   pong.players[0].pos.y = event.offsetY;
+
+});
+// event listner for click to start / restart
+canvas.addEventListener('click', event => {
+  pong.start();
 
 });
