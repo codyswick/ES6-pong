@@ -3,26 +3,86 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Your Wifes Purse Store</title>
+  <!--my style-->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css">
+  <!-- Bootstrap core CSS -->
+
+
 </head>
 
-<body style='background: linear-gradient(to right, rgba(33,22,21,1) 0%, rgba(241,111,92,1) 27%, rgba(246,41,12,1) 53%, rgba(248,80,50,1) 79%, rgba(55,28,24,1) 97%, rgba(33,22,21,1) 99%, rgba(231,56,39,1) 100%);'>
-  <h1 style='position:relative;text-align:center;color:#dadada'>Pong</h1>
-  <div style='display:flex; align-items:center; justify-content:center;'>
+<body>
 
-    <canvas id='pong' width="600" height="400" style='justify-content:center;border:5px solid black;'></canvas>
+
+
+  <div class="topnav" id="myTopnav">
+    <a href="#home" class="active">Home</a>
+    <a href="#news">About</a>
+    <a href="#contact">Play</a>
+    <a href="#about">View Code</a>
+    <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+      <i class="fa fa-bars"></i>
+    </a>
+  </div>
+  <div class="hero-image">
+  </div>
+
+
+  <h1>Pong</h1>
+  <hr>
+  <div class='canvas-div'>
+
+    <canvas id='pong' width="900" height="400"></canvas>
     <script type="text/javascript" <script src="pong.js"></script>
 
     </script>
   </div>
-  <div class="turkey" style='text-align:center;position:absolute;margin:30px;color:#dadada'>
-    <p>Pong is one of the earliest arcade video games. It is a table tennis sports game featuring simple two-dimensional graphics. The game was originally manufactured by Atari, which released it in 1972. Allan Alcorn created Pong as a training
-      exercise assigned to him by Atari co-founder Nolan Bushnell. Bushnell based the idea on an electronic ping-pong game included in the Magnavox Odyssey; Magnavox later sued Atari for patent infringement. Bushnell and Atari co-founder Ted Dabney
-      were surprised by the quality of Alcorn's work and decided to manufacture the game. </p>
+
+  <div class='wrap'>
+    <h2>About</h2>
+    <hr>
+    <div class="turkey">
+      <p>Pong is one of the earliest arcade video games. It is a table tennis sports game featuring simple two-dimensional graphics. The game was originally manufactured by Atari, which released it in 1972. Allan Alcorn created Pong as a training
+        exercise assigned to him by Atari co-founder Nolan Bushnell. Bushnell based the idea on an electronic ping-pong game included in the Magnavox Odyssey; Magnavox later sued Atari for patent infringement. Bushnell and Atari co-founder Ted Dabney
+        were surprised by the quality of Alcorn's work and decided to manufacture the game. </p>
+
+    </div>
+  </div>
+  <footer>
+    <div class='header' id='bottom'>
+    <!-- setting list links-->
+    <ul>
+      <li></li>
+      <li></li>
+      <li><a href="#">Back To Top</a></li>
+
+    </ul>
 
   </div>
+  </footer>
 
 </body>
+<script>
+  function myFunction() {
+    var x = document.getElementById("myTopnav");
+    
+
+
+    if (x.className === "topnav") {
+      x.className += " responsive";
+
+
+
+    } else {
+      x.className = "topnav";
+    }
+  }
+</script>
 
 </html>
 <!--https://www.youtube.com/watch?v=ju09womACpQ-->
